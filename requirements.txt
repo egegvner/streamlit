@@ -1,6 +1,6 @@
 streamlit_drawable_canvas
 streamlit
 numpy
-PIL
+pillow
 tensorflow
-cv2
+opencv-python
