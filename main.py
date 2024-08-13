@@ -14,7 +14,7 @@ st.set_page_config(
 # Load the model once
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('model.keras')
+    return tf.keras.models.load_model('model.h5')
 
 model = load_model()
 
