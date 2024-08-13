@@ -10,8 +10,21 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
-# Load the model once
-model = tf.keras.models.load_model('model.keras')
+
+def retry_on_connectionerror(f, max_retries=5):
+  retries = 0
+  while retries < max_retries:
+    try:
+      return f()
+    except ConnectionError:
+      retries += 1
+  raise Exception("Maximum retries exceeded")
+
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model('model.keras')
+
+model = retry_on_connectionerror(load_model)
 
 st.write('# MNIST Digit Recognition')
 st.write('## Using a CNN `TensorFlow` model')
