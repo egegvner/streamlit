@@ -11,11 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 # Load the model once
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model('model.keras')
-
-model = load_model()
+model = tf.keras.models.load_model('model.keras')
 
 st.write('# MNIST Digit Recognition')
 st.write('## Using a CNN `TensorFlow` model')
