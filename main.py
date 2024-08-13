@@ -3,6 +3,11 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 st.set_page_config(
     page_title="Tensorflow Model",
@@ -11,12 +16,54 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Load the model once
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model('model.keras')
+# Function to train a new model
+def train_model():
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-model = load_model()
+    x_train = x_train.astype('float32') / 255.0
+    x_test = x_test.astype('float32') / 255.0
+
+    x_train = x_train.reshape(-1, 28, 28, 1)
+    x_test = x_test.reshape(-1, 28, 28, 1)
+
+    y_train = to_categorical(y_train, 10)
+    y_test = to_categorical(y_test, 10)
+
+    datagen = ImageDataGenerator(
+        rotation_range=10,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        zoom_range=0.1,
+        shear_range=0.1,
+        horizontal_flip=False,
+        fill_mode='nearest'
+    )
+
+    model = Sequential([
+        Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+        BatchNormalization(),
+        MaxPooling2D(pool_size=(2, 2)),
+        Conv2D(64, kernel_size=(3, 3), activation='relu'),
+        BatchNormalization(),
+        MaxPooling2D(pool_size=(2, 2)),
+        Conv2D(128, kernel_size=(3, 3), activation='relu'),
+        BatchNormalization(),
+        MaxPooling2D(pool_size=(2, 2)),
+        Flatten(),
+        Dense(128, activation='relu'),
+        Dropout(0.2),
+        Dense(10, activation='softmax')
+    ])
+
+    model.compile(optimizer='adam',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+
+    model.fit(datagen.flow(x_train, y_train, batch_size=64),
+              epochs=10,
+              validation_data=(x_test, y_test))
+
+    return model
 
 st.write('# MNIST Digit Recognition')
 st.write('## Using a CNN `TensorFlow` model')
@@ -40,6 +87,9 @@ canvas_result = st_canvas(
 
 if canvas_result.image_data is not None:
     try:
+        # Train the model
+        model = train_model()
+
         # Convert the canvas image to grayscale directly
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
