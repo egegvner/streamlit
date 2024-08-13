@@ -11,10 +11,10 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
-# Load the model once
+
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('model.keras')
+    return tf.keras.models.load_model('model.h5')
 
 model = load_model()
 
@@ -28,7 +28,7 @@ realtime_update = st.sidebar.checkbox("Update in realtime", True)
 st.sidebar.write("Model by Ege Güvener")
 
 canvas_result = st_canvas(
-    fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
+    fill_color="rgba(255, 165, 0, 0.3)",
     stroke_width=stroke_width,
     stroke_color='#FFFFFF',
     background_color='#000000',
@@ -40,22 +40,20 @@ canvas_result = st_canvas(
 )
 
 if canvas_result.image_data is not None:
-    # Convert the canvas image to grayscale directly
+    
     input_numpy_array = np.array(canvas_result.image_data)
     input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
     input_image_gs = input_image.convert('L')
 
-    # Convert to numpy array and normalize
     input_image_gs_np = np.asarray(input_image_gs, dtype=np.float32)
-    input_image_gs_np = cv2.resize(input_image_gs_np, (28, 28))  # Resize to 28x28 directly
+    input_image_gs_np = cv2.resize(input_image_gs_np, (28, 28))
 
-    tensor_image = np.expand_dims(input_image_gs_np, axis=-1)  # Add channel dimension
-    tensor_image = np.expand_dims(tensor_image, axis=0)  # Add batch dimension
+    tensor_image = np.expand_dims(input_image_gs_np, axis=-1)
+    tensor_image = np.expand_dims(tensor_image, axis=0)
 
-    mean, std = 0.1307, 0.3081  # Check if these are correct for your model
-    tensor_image = (tensor_image - mean) / std  # Normalize input
+    mean, std = 0.1307, 0.3081
+    tensor_image = (tensor_image - mean) / std
 
-    # Perform prediction
     predictions = model.predict(tensor_image)
     output = np.argmax(predictions)
     certainty = np.max(predictions)
