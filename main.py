@@ -8,13 +8,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
-st.set_page_config(
-    page_title="Tensorflow Model",
-    page_icon="💎",
-    layout="centered",
-    initial_sidebar_state="expanded",
-)
+import threading
 
 # Function to train a new model
 def train_model():
@@ -65,6 +59,19 @@ def train_model():
 
     return model
 
+# Start training in a background thread
+def start_training():
+    if 'model' not in st.session_state:
+        st.session_state.model = train_model()
+
+# Streamlit App
+st.set_page_config(
+    page_title="Tensorflow Model",
+    page_icon="💎",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
+
 st.write('# MNIST Digit Recognition')
 st.write('## Using a CNN `TensorFlow` model')
 
@@ -87,11 +94,11 @@ canvas_result = st_canvas(
 
 if canvas_result.image_data is not None:
     try:
+        if 'model' not in st.session_state:
+            start_training()
 
-        with st.spinner("Training the model..."):
-            model = train_model()
-        st.success("Trained")
-        
+        model = st.session_state.model
+
         # Convert the canvas image to grayscale directly
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
