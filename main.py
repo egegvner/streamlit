@@ -87,9 +87,11 @@ canvas_result = st_canvas(
 
 if canvas_result.image_data is not None:
     try:
-        # Train the model
-        model = train_model()
 
+        with st.spinner("Training the model..."):
+            model = train_model()
+        st.success("Trained")
+        
         # Convert the canvas image to grayscale directly
         input_numpy_array = np.array(canvas_result.image_data)
         input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
