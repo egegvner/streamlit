@@ -13,7 +13,7 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('model.h5')
+    return tf.keras.models.load_model('model.keras')
 
 model = load_model()
 
@@ -24,7 +24,6 @@ st.write('### Draw a digit in 0-9 in the box below')
 stroke_width = st.sidebar.slider("Stroke width: ", 1, 25, 9)
 
 realtime_update = st.sidebar.checkbox("Update in realtime", True)
-st.sidebar.write("Model by Ege Güvener")
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
@@ -32,20 +31,21 @@ canvas_result = st_canvas(
     stroke_color='#FFFFFF',
     background_color='#000000',
     update_streamlit=realtime_update,
-    height=200,
-    width=200,
+    height=300,
+    width=300,
     drawing_mode='freedraw',
     key="canvas",
 )
 
 if canvas_result.image_data is not None:
-    
     input_numpy_array = np.array(canvas_result.image_data)
     input_image = Image.fromarray(input_numpy_array.astype('uint8'), 'RGBA')
     input_image_gs = input_image.convert('L')
 
     input_image_gs_np = np.asarray(input_image_gs, dtype=np.float32)
-    input_image_gs_np = cv2.resize(input_image_gs_np, (28, 28))
+    image_pil = Image.fromarray(input_image_gs_np)
+    new_image = image_pil.resize((28, 28))
+    input_image_gs_np = np.array(new_image)
 
     tensor_image = np.expand_dims(input_image_gs_np, axis=-1)
     tensor_image = np.expand_dims(tensor_image, axis=0)
@@ -66,3 +66,6 @@ if canvas_result.image_data is not None:
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
+
+    st.divider()
+    st.write("<h7><p>Credits to Ege Güvener / @egegvner</p></h7>", unsafe_allow_html=True)
