@@ -5,7 +5,7 @@ from PIL import Image
 import tensorflow as tf
 
 st.set_page_config(
-    page_title = "Tensorflow Model By Ege                        ",
+    page_title = "Tensorflow Model",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -21,7 +21,8 @@ st.write('### Draw a digit in 0-9 in the box below')
 epochs = st.sidebar.slider("Epochs", 1, 10, 1)
 
 if st.sidebar.button("Load Model", type="primary"):
-    model = tf.keras.models.load_model(f"model{epochs}.keras")
+    with st.spinner("Loading Model..."):
+        model = tf.keras.models.load_model(f"model{epochs}.keras")
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
