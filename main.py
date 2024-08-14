@@ -5,7 +5,7 @@ from PIL import Image
 import tensorflow as tf
 
 st.set_page_config(
-    page_title = "Tensorflow Model By Ege",
+    page_title = "Tensorflow Model By Ege                        ",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
