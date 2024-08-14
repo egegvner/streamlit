@@ -11,27 +11,24 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model('model.keras')
-
-with st.spinner("Loading Model..."):
-    model = load_model()
+model = tf.keras.models.load_model('model1.keras')
 
 st.write('# MNIST Digit Recognition')
 st.write('## Using a CNN `TensorFlow` model')
 
 st.write('### Draw a digit in 0-9 in the box below')
-stroke_width = st.sidebar.slider("Stroke width: ", 1, 25, 9)
 
-realtime_update = st.sidebar.checkbox("Update in realtime", True)
+epochs = st.sidebar.slider("Epochs", 1, 10, 1)
+
+if st.sidebar.button("Load Model", type="primary"):
+    model = tf.keras.models.load_model(f"model{epochs}.keras")
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
-    stroke_width=stroke_width,
+    stroke_width=10,
     stroke_color='#FFFFFF',
     background_color='#000000',
-    update_streamlit=realtime_update,
+    update_streamlit=True,
     height=300,
     width=300,
     drawing_mode='freedraw',
@@ -70,3 +67,5 @@ if canvas_result.image_data is not None:
 
     st.divider()
     st.write("<h7><p>Credits to Ege Güvener / @egegvner</p></h7>", unsafe_allow_html=True)
+else:
+    pass
