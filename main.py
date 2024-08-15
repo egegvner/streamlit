@@ -12,7 +12,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-time.sleep(1)
 tf.keras.backend.clear_session()
 time.sleep(1)
 
