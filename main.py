@@ -14,9 +14,9 @@ try:
         initial_sidebar_state="expanded",
     )
 
-    time.sleep(0.1)
+    time.sleep(0.01)
     tf.keras.backend.clear_session()
-    time.sleep(0.1)
+    time.sleep(0.01)
 
     model = tf.keras.models.load_model('model.keras')
 
