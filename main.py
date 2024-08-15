@@ -81,7 +81,7 @@ try:
         col3.metric(label="Model Train Time", value="0.16h", delta="0.2h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
 
     st.divider()
-    st.write("###### Credits to `Ege Güvener`/ `@egegvner` @ 2024")
+    st.write("###### Handmade model by / credits to `Ege Güvener`/ `@egegvner` @ 2024")
 except Exception as e:
     st.write("# *Refresh the page if you encounter any errors.")
     st.write("##### Keep reloading until non-error output is produced.\n")
