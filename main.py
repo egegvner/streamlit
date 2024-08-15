@@ -12,8 +12,9 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-time.sleep(1)
+time.sleep(0.1)
 tf.keras.backend.clear_session()
+time.sleep(0.1)
 
 model = tf.keras.models.load_model('model.keras')
 
