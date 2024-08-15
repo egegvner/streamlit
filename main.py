@@ -5,7 +5,7 @@ from PIL import Image
 import tensorflow as tf
 import time
 
-st.write("Reload the page if you encounter any errors.")
+st.write("# *Reload the page if you encounter any errors.")
 
 st.set_page_config(
     page_title = "Tensorflow Model by Ege G.",
