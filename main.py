@@ -60,11 +60,6 @@ try:
         st.write(f'# Prediction: \v`{str(output)}`')
 
         st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
-        st.divider()
-        st.write("# Model Analysis")
-        st.write("###### Since Last Update")
-
-        st.write("##### \n")
         
         st.divider()
         st.write("### Image As a Grayscale `NumPy` Array")
@@ -72,6 +67,11 @@ try:
 
         st.divider()
 
+        st.write("# Model Analysis")
+        st.write("###### Since Last Update")
+
+        st.write("##### \n")
+        
         col1, col2, col3 = st.columns(3)
         
         col1.metric(label="Epochs", value=10, delta=9, help="One epoch refers to one complete pass through the entire training dataset.")
