@@ -84,4 +84,5 @@ try:
     st.write("###### Credits to `Ege Güvener`/ `@egegvner` @ 2024")
 except Exception as e:
     st.write("# Refresh the page if you encounter any errors.")
-    st.write(e)
+    st.write("##### Keep reloading until non-error output is produced.\n")
+    st.write(f"Error: {e}")
