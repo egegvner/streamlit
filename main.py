@@ -14,7 +14,7 @@ st.set_page_config(
 
 time.sleep(0.1)
 tf.keras.backend.clear_session()
-model = tf.keras.models.load_model('model.h5')
+model = tf.keras.models.load_model('model.keras')
 
 st.write('# MNIST Digit Recognition')
 st.write('###### Using a CNN `TensorFlow` Model')
