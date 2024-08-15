@@ -6,14 +6,14 @@ import tensorflow as tf
 import time
 
 st.set_page_config(
-    page_title = "Tensorflow Model",
+    page_title = "Tensorflow Model by Ege G.",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
 )
 
-tf.keras.backend.clear_session()
 time.sleep(1)
+tf.keras.backend.clear_session()
 
 model = tf.keras.models.load_model('model.keras')
 
