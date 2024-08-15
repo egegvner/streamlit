@@ -3,6 +3,7 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
+import time
 
 st.set_page_config(
     page_title = "Tensorflow Model",
@@ -11,18 +12,14 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-model = tf.keras.models.load_model('model1.keras')
+time.sleep(0.1)
+tf.keras.backend.clear_session()
+model = tf.keras.models.load_model('model10.keras')
 
 st.write('# MNIST Digit Recognition')
-st.write('## Using a CNN `TensorFlow` model')
+st.write('###### Using a CNN `TensorFlow` Model')
 
-st.write('### Draw a digit in 0-9 in the box below')
-
-epochs = st.sidebar.slider("Epochs", 1, 10, 1)
-
-if st.sidebar.button("Load Model", type="primary"):
-    with st.spinner("Loading Model..."):
-        model = tf.keras.models.load_model(f"model{epochs}.keras")
+st.write('#### Draw a digit in 0-9 in the box below')
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
@@ -56,17 +53,26 @@ if canvas_result.image_data is not None:
     output = np.argmax(predictions)
     certainty = np.max(predictions)
 
-    st.write('### Prediction')
-    st.write('### ' + str(output))
+    st.write(f'# Prediction: \v`{str(output)}`')
 
-    st.write('### Certainty')
-    st.write(f'{certainty * 100:.2f}%')
+    st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
+    st.divider()
+    st.write("# Model Analysis")
+    st.write("###### Since Last Update")
+
+    st.write("##### \n")
+
+    col1, col2, col3 = st.columns(3)
     
+    col1.metric(label="Epochs", value=10, delta=9, help="One epoch refers to one complete pass through the entire training dataset.")
+
+    col2.metric(label="Accuracy", value="98.53%", delta="0.26%", help="Total accuracy of the model which is calculated based on the test data.")
+
+    col3.metric(label="Model Train Time", value="0.16h", delta="0.2h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
+
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
 
-    st.divider()
-    st.write("<h7><p>Credits to Ege Güvener / @egegvner</p></h7>", unsafe_allow_html=True)
-else:
-    pass
+st.divider()
+st.write("###### Credits to `Ege Güvener`/ `@egegvner` @ 2024")
