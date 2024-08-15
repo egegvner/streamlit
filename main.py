@@ -65,6 +65,12 @@ try:
         st.write("###### Since Last Update")
 
         st.write("##### \n")
+        
+        st.divider()
+        st.write("### Image As a Grayscale `NumPy` Array")
+        st.write(input_image_gs_np)
+
+        st.divider()
 
         col1, col2, col3 = st.columns(3)
         
@@ -73,10 +79,6 @@ try:
         col2.metric(label="Accuracy", value="98.53%", delta="0.26%", help="Total accuracy of the model which is calculated based on the test data.")
 
         col3.metric(label="Model Train Time", value="0.16h", delta="0.2h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
-
-        st.divider()
-        st.write("### Image As a Grayscale `NumPy` Array")
-        st.write(input_image_gs_np)
 
     st.divider()
     st.write("###### Credits to `Ege Güvener`/ `@egegvner` @ 2024")
