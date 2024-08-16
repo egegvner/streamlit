@@ -78,7 +78,7 @@ try:
 
         col2.metric(label="Accuracy", value="98.53%", delta="0.26%", help="Total accuracy of the model which is calculated based on the test data.")
 
-        col3.metric(label="Model Train Time", value="0.16h", delta="0.2h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
+        col3.metric(label="Model Train Time", value="0.16h", delta="0.08h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
 
     st.divider()
     st.write("###### Handmade model by / credits to `Ege Güvener`/ `@egegvner` @ 2024")
