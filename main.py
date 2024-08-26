@@ -21,7 +21,7 @@ try:
     model = tf.keras.models.load_model('model.keras')
 
     st.write('# MNIST Digit Recognition')
-    st.write('###### Using a CNN `TensorFlow / Keras` Model')
+    st.write('###### Using a CNN `Keras` Model')
 
     st.write('#### Draw a digit in 0-9 in the box below')
 
