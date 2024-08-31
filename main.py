@@ -4,7 +4,6 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 import time
-import matplotlib.pyplot as plt
 import pandas as pd
 
 st.set_page_config(
