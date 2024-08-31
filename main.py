@@ -7,7 +7,7 @@ import time
 import pandas as pd
 
 st.set_page_config(
-    page_title = "Tensorflow Model",
+    page_title="Tensorflow Model",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -15,7 +15,12 @@ st.set_page_config(
 
 time.sleep(0.1)
 tf.keras.backend.clear_session()
-model = tf.keras.models.load_model('model.keras')
+
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model('model.keras')
+
+model = load_model()
 
 data = {
     'Layer': ['1', '2', '3', '4', '5'],
