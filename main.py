@@ -99,7 +99,7 @@ if canvas_result.image_data is not None:
     
     st.divider()
 
-  st.markdown("""
+    st.markdown("""
 <img src="https://www.cutercounter.com/hits.php?id=hxpcokn&nd=9&style=1" border="0" alt="website counter"></a>
 """, unsafe_allow_html=True)
 st.write("###### Credits to `Ege Güvener`/ `@egegvner` @ 2024")
