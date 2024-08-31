@@ -13,22 +13,14 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-data = {
-    'Layer': ['1', '2', '3', '4', '5'],
-    'Neurons': [128, 256, 256, 256, 10]
-}
-
 time.sleep(0.1)
 tf.keras.backend.clear_session()
 model = tf.keras.models.load_model('model.keras')
 
-st.markdown("""
-    <div align=right><small>
-    Page views: <img src="https://www.cutercounter.com/hits.php?id=hvxndaff&nd=5&style=1" border="0" alt="hit counter"><br>
-    Unique visitors: <img src="https://www.cutercounter.com/hits.php?id=hxndkqx&nd=5&style=1" border="0" alt="website counter"><br>
-    GitHub <a href="https://github.com/tipani86/CatGDP"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tipani86/CatGDP?style=social"></a>
-    </small></div>
-    """, unsafe_allow_html=True)
+data = {
+    'Layer': ['1', '2', '3', '4', '5'],
+    'Neurons': [128, 256, 256, 256, 10]
+}
 
 st.write('# MNIST Digit Recognition')
 st.write('###### Using a CNN `TensorFlow` Model')
