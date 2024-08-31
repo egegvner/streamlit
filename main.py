@@ -77,7 +77,7 @@ if canvas_result.image_data is not None:
 
     col2.metric(label="Accuracy", value="99.76%", delta="0.52%", help="Total accuracy of the model which is calculated based on the test data.")
 
-    col3.metric(label="Model Train Time", value="0.16h", delta="0.2h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
+    col3.metric(label="Model Train Time", value="0.18h", delta="0.4h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
 
     st.divider()
     st.write("# Number of Neurons")
