@@ -64,7 +64,7 @@ if canvas_result.image_data is not None:
     output = np.argmax(predictions)
     certainty = np.max(predictions)
 
-    st.write(f'# Prediction: \v`{str(output) if canvas_result.image_data is not None else ""}`')
+    st.write(f'# Prediction: \v`{str(output)}`')
 
     st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
     st.divider()
