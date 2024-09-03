@@ -22,14 +22,18 @@ def load_model():
 
 model = load_model()
 
-# Create a mapping from model output to characters
-index_to_char = {i: chr(i + 65) for i in range(26)}
-index_to_char.update({i + 26: str(i) for i in range(10)})
-index_to_char[52:] = [chr(i) for i in range(65, 91)]  # A-Z
+# Create a mapping of class indices to their respective labels
+def index_to_label(index):
+    if index < 10:
+        return str(index)  # Digits
+    elif 10 <= index < 36:
+        return chr(index + ord('A') - 10)  # Uppercase letters
+    else:
+        return chr(index + ord('a') - 36)  # Lowercase letters
 
 data = {
     'Layer': ['1', '2', '3', '4', '5'],
-    'Neurons': [128, 256, 256, 256, 62]  # Updated to reflect 62 classes
+    'Neurons': [128, 256, 256, 256, 10]
 }
 
 st.write('# EMNIST Character Recognition')
@@ -62,15 +66,15 @@ if canvas_result.image_data is not None:
     tensor_image = np.expand_dims(input_image_gs_np, axis=-1)
     tensor_image = np.expand_dims(tensor_image, axis=0)
 
-    # Normalization for EMNIST
-    mean, std = 0.5, 0.5
+    mean, std = 0.1307, 0.3081
     tensor_image = (tensor_image - mean) / std
 
     predictions = model.predict(tensor_image)
-    output = np.argmax(predictions)
+    output_index = np.argmax(predictions)
     certainty = np.max(predictions)
+    output_label = index_to_label(output_index)
 
-    st.write(f'# Prediction: `{index_to_char[output]}`')
+    st.write(f'# Prediction: `{output_label}`')
 
     st.write(f'##### Certainty: `{certainty * 100:.2f}%`')
     st.divider()
