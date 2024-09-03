@@ -18,7 +18,7 @@ tf.keras.backend.clear_session()
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model('model.keras')
+    return tf.keras.models.load_model('EMNIST_byClass_Model.keras')
 
 model = load_model()
 
