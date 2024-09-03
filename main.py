@@ -22,15 +22,20 @@ def load_model():
 
 model = load_model()
 
+# Create a mapping from model output to characters
+index_to_char = {i: chr(i + 65) for i in range(26)}
+index_to_char.update({i + 26: str(i) for i in range(10)})
+index_to_char[52:] = [chr(i) for i in range(65, 91)]  # A-Z
+
 data = {
     'Layer': ['1', '2', '3', '4', '5'],
-    'Neurons': [128, 256, 256, 256, 10]
+    'Neurons': [128, 256, 256, 256, 62]  # Updated to reflect 62 classes
 }
 
-st.write('# MNIST Digit Recognition')
+st.write('# EMNIST Character Recognition')
 st.write('###### Using a CNN `TensorFlow` Model')
 
-st.write('#### Draw a digit in 0-9 in the box below')
+st.write('#### Draw a character (digit or letter) in the box below')
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
@@ -57,16 +62,17 @@ if canvas_result.image_data is not None:
     tensor_image = np.expand_dims(input_image_gs_np, axis=-1)
     tensor_image = np.expand_dims(tensor_image, axis=0)
 
-    mean, std = 0.1307, 0.3081
+    # Normalization for EMNIST
+    mean, std = 0.5, 0.5
     tensor_image = (tensor_image - mean) / std
 
     predictions = model.predict(tensor_image)
     output = np.argmax(predictions)
     certainty = np.max(predictions)
 
-    st.write(f'# Prediction: \v`{str(output)}`')
+    st.write(f'# Prediction: `{index_to_char[output]}`')
 
-    st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
+    st.write(f'##### Certainty: `{certainty * 100:.2f}%`')
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
