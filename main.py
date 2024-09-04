@@ -7,7 +7,7 @@ import time
 import pandas as pd
 
 st.set_page_config(
-    page_title = "Tensorflow Model",
+    page_title="Tensorflow Model",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -15,7 +15,12 @@ st.set_page_config(
 
 time.sleep(0.1)
 tf.keras.backend.clear_session()
-model = tf.keras.models.load_model('model.keras')
+
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model('EMNIST_byClass_Model.keras')
+
+model = load_model()
 
 data = {
     'Layer': ['1', '2', '3', '4', '5'],
@@ -23,7 +28,7 @@ data = {
 }
 
 st.write('# MNIST Digit Recognition')
-st.write('###### Using a CNN `TensorFlow` Model')
+st.write('###### Using a CNN TensorFlow Model')
 
 st.write('#### Draw a digit in 0-9 in the box below')
 
@@ -59,11 +64,11 @@ if canvas_result.image_data is not None:
     output = np.argmax(predictions)
     certainty = np.max(predictions)
 
-    st.write(f'# Prediction: \v`{str(output)}`')
+    st.write(f'# Prediction: \v{str(output)}')
 
-    st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
+    st.write(f'##### Certainty: \v{certainty * 100:.2f}%')
     st.divider()
-    st.write("### Image As a Grayscale `NumPy` Array")
+    st.write("### Image As a Grayscale NumPy Array")
     st.write(input_image_gs_np)
 
     st.write("# Model Analysis")
@@ -75,7 +80,7 @@ if canvas_result.image_data is not None:
     
     col1.metric(label="Epochs", value=10, delta=9, help="One epoch refers to one complete pass through the entire training dataset.")
 
-    col2.metric(label="Accuracy", value="99.76%", delta="0.52%", help="Total accuracy of the model which is calculated based on the test data.")
+    col2.metric(label="Accuracy", value="96.76%", delta="0.52%", help="Total accuracy of the model which is calculated based on the test data.")
 
     col3.metric(label="Model Train Time", value="0.18h", delta="0.4h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
 
@@ -94,4 +99,4 @@ if canvas_result.image_data is not None:
     st.markdown("""
 <img src="https://www.cutercounter.com/hits.php?id=hxpcokn&nd=9&style=1" border="0" alt="website counter"></a>
 """, unsafe_allow_html=True)
-st.write("###### Credits to `Ege Güvener`/ `@egegvner` @ 2024")
+st.write("###### Credits to Ege Güvener/ @egegvner @ 2024")
