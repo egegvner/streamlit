@@ -28,7 +28,7 @@ data = {
 }
 
 st.write('# MNIST Digit Recognition')
-st.write('###### Using a CNN TensorFlow Model')
+st.write('###### Using a `CNN Keras` Model')
 
 st.write('#### Draw a digit in 0-9 in the box below')
 
@@ -64,9 +64,9 @@ if canvas_result.image_data is not None:
     output = np.argmax(predictions)
     certainty = np.max(predictions)
 
-    st.write(f'# Prediction: \v{str(output)}')
+    st.write(f'# Prediction: \v`{str(output)}`')
 
-    st.write(f'##### Certainty: \v{certainty * 100:.2f}%')
+    st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
     st.divider()
     st.write("### Image As a Grayscale NumPy Array")
     st.write(input_image_gs_np)
@@ -99,4 +99,4 @@ if canvas_result.image_data is not None:
     st.markdown("""
 <img src="https://www.cutercounter.com/hits.php?id=hxpcokn&nd=9&style=1" border="0" alt="website counter"></a>
 """, unsafe_allow_html=True)
-st.write("###### Credits to Ege Güvener/ @egegvner @ 2024")
+st.write("###### Credits to `Ege Güvener` / `@egegvner` @2024")
