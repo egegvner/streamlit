@@ -7,7 +7,7 @@ import time
 import pandas as pd
 
 st.set_page_config(
-    page_title="Tensorflow Model",
+    page_title = "Tensorflow Model",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -15,31 +15,17 @@ st.set_page_config(
 
 time.sleep(0.1)
 tf.keras.backend.clear_session()
-
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model('EMNIST_byClass_Model.keras')
-
-model = load_model()
-
-# Create a mapping of class indices to their respective labels
-def index_to_label(index):
-    if index < 10:
-        return str(index)  # Digits
-    elif 10 <= index < 36:
-        return chr(index + ord('A') - 10)  # Uppercase letters
-    else:
-        return chr(index + ord('a') - 36)  # Lowercase letters
+model = tf.keras.models.load_model('model.keras')
 
 data = {
     'Layer': ['1', '2', '3', '4', '5'],
     'Neurons': [128, 256, 256, 256, 10]
 }
 
-st.write('# EMNIST Character Recognition')
+st.write('# MNIST Digit Recognition')
 st.write('###### Using a CNN `TensorFlow` Model')
 
-st.write('#### Draw a character (digit or letter) in the box below')
+st.write('#### Draw a digit in 0-9 in the box below')
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
@@ -70,13 +56,12 @@ if canvas_result.image_data is not None:
     tensor_image = (tensor_image - mean) / std
 
     predictions = model.predict(tensor_image)
-    output_index = np.argmax(predictions)
+    output = np.argmax(predictions)
     certainty = np.max(predictions)
-    output_label = index_to_label(output_index)
 
-    st.write(f'# Prediction: `{output_label}`')
+    st.write(f'# Prediction: \v`{str(output)}`')
 
-    st.write(f'##### Certainty: `{certainty * 100:.2f}%`')
+    st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
@@ -90,7 +75,7 @@ if canvas_result.image_data is not None:
     
     col1.metric(label="Epochs", value=10, delta=9, help="One epoch refers to one complete pass through the entire training dataset.")
 
-    col2.metric(label="Accuracy", value="96.76%", delta="0.52%", help="Total accuracy of the model which is calculated based on the test data.")
+    col2.metric(label="Accuracy", value="99.76%", delta="0.52%", help="Total accuracy of the model which is calculated based on the test data.")
 
     col3.metric(label="Model Train Time", value="0.18h", delta="0.4h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
 
