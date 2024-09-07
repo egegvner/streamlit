@@ -30,7 +30,7 @@ data = {
 st.write('# MNIST Digit Recognition')
 st.write('###### Using a `CNN Keras` Model')
 
-st.write('##### Draw a digit (0 - 9) below')
+st.write('###### Draw a digit (0 - 9) below')
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
@@ -91,7 +91,7 @@ if canvas_result.image_data is not None:
     st.bar_chart(df.set_index('Layer'), x_label="Layer Number", y_label="Neurons")
     st.write("# ")
 
-    st.write("Softmax activation function in layer 5:")
+    st.write("Layer 5 Softmax Activation Function")
     st.latex(r"softmax({z})=\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}")
     
     st.divider()
