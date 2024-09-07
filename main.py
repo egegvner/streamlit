@@ -30,7 +30,7 @@ data = {
 st.write('# MNIST Digit Recognition')
 st.write('###### Using a `CNN Keras` Model')
 
-st.write('#### Draw a digit (0 - 9) below')
+st.write('##### Draw a digit (0 - 9) below')
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
