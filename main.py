@@ -30,7 +30,7 @@ data = {
 def stream_data(s):
     for word in s.split(" "):
         yield word + " "
-        time.sleep(0.4)
+        time.sleep(0.2)
 
 st.toast("Scroll for more!", icon="🔽")
 st.write_stream(stream_data("# MNIST Digit Recognition"))
