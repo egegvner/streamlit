@@ -33,7 +33,7 @@ def stream_data(s):
         time.sleep(0.02)
 
 st.toast("Scroll for more!", icon="🔽")
-st.write_stream(stream_data("MNIST Digit Recognition")
+st.write_stream(stream_data("MNIST Digit Recognition"))
 st.write('###### Using a `CNN Keras` Model')
 
 st.write('#### Draw a digit (0 - 9) below')
