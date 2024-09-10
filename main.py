@@ -30,13 +30,13 @@ data = {
 def stream_data(s):
     for word in s.split(" "):
         yield word + " "
-        time.sleep(0.2)
+        time.sleep(0.4)
 
 st.toast("Scroll for more!", icon="🔽")
 st.write_stream(stream_data("# MNIST Digit Recognition"))
-st.write('###### Using a `CNN Keras` Model')
+st.write_stream(stream_data('###### Using a `CNN Keras` Model'))
 
-st.write('#### Draw a digit (0 - 9) below')
+st.write_stream(stream_data('#### Draw a digit (0 - 9) below'))
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
@@ -70,7 +70,7 @@ if canvas_result.image_data is not None:
     output = np.argmax(predictions)
     certainty = np.max(predictions)
 
-    st.write(f'# Prediction: \v`{str(output)}`')
+    st.write_stream(stream_data(f'# Prediction: \v`{str(output)}`'))
 
     st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
     st.divider()
