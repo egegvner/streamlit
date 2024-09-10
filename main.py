@@ -27,6 +27,7 @@ data = {
     'Neurons': [128, 256, 256, 256, 10]
 }
 
+st.toast("Scroll for more!", icon="🔽")
 st.write('# MNIST Digit Recognition')
 st.write('###### Using a `CNN Keras` Model')
 
