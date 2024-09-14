@@ -32,7 +32,6 @@ def stream_data(s):
         yield word + " "
         time.sleep(0.2)
 
-# Comments section functions
 def load_comments():
     try:
         return pd.read_csv('comments.csv')
@@ -120,18 +119,19 @@ if canvas_result.image_data is not None:
     """, unsafe_allow_html=True)
     st.write("###### Credits to `Ege Güvener` / `@egegvner` @2024")
 
-    # Comments Section
-    st.write("# Comments Section")
+    st.write("# Leave a Comment")
 
     name = st.text_input('Name')
     comment = st.text_area('Comment')
 
-    if st.button('Submit'):
+    if st.button('Submit', type = "primary"):
         if name and comment:
             save_comment(name, comment)
             st.success('Comment submitted successfully!')
-        else:
-            st.error('Please enter both name and comment.')
+        elif name == "":
+            st.error('Don't you have a name?')
+        elif comment == "":
+            st.error('Why would you post a empty comment?')
 
     st.subheader('Existing Comments')
     comments = load_comments()
