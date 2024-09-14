@@ -46,7 +46,7 @@ def save_comment(name, comment):
 
 st.toast("Scroll for more!", icon="🔽")
 st.write("# MNIST Digit Recognition")
-st.write('###### Using a `CNN Keras` Model')
+st.write("###### Parameter Count: `1,480,458` ")
 
 st.write('#### Draw a digit (0 - 9) below')
 
@@ -85,8 +85,9 @@ if canvas_result.image_data is not None:
     st.write(f'# Prediction: \v`{str(output)}`')
 
     st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
+    st.write("###### Model `v2.0.8`")
     st.divider()
-    st.write("### Image As a Grayscale NumPy Array")
+    st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
 
     st.write("# Model Analysis")
