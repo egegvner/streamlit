@@ -32,6 +32,19 @@ def stream_data(s):
         yield word + " "
         time.sleep(0.2)
 
+# Comments section functions
+def load_comments():
+    try:
+        return pd.read_csv('comments.csv')
+    except FileNotFoundError:
+        return pd.DataFrame(columns=['Name', 'Comment'])
+
+def save_comment(name, comment):
+    comments = load_comments()
+    new_comment = pd.DataFrame({'Name': [name], 'Comment': [comment]})
+    comments = pd.concat([comments, new_comment], ignore_index=True)
+    comments.to_csv('comments.csv', index=False)
+
 st.toast("Scroll for more!", icon="🔽")
 st.write("# MNIST Digit Recognition")
 st.write('###### Using a `CNN Keras` Model')
@@ -103,6 +116,24 @@ if canvas_result.image_data is not None:
     st.divider()
 
     st.markdown("""
-<img src="https://www.cutercounter.com/hits.php?id=hxpcokn&nd=9&style=1" border="0" alt="website counter"></a>
-""", unsafe_allow_html=True)
-st.write("###### Credits to `Ege Güvener` / `@egegvner` @2024")
+    <img src="https://www.cutercounter.com/hits.php?id=hxpcokn&nd=9&style=1" border="0" alt="website counter"></a>
+    """, unsafe_allow_html=True)
+    st.write("###### Credits to `Ege Güvener` / `@egegvner` @2024")
+
+    # Comments Section
+    st.write("# Comments Section")
+
+    name = st.text_input('Name')
+    comment = st.text_area('Comment')
+
+    if st.button('Submit'):
+        if name and comment:
+            save_comment(name, comment)
+            st.success('Comment submitted successfully!')
+        else:
+            st.error('Please enter both name and comment.')
+
+    st.subheader('Existing Comments')
+    comments = load_comments()
+    for i, row in comments.iterrows():
+        st.write(f"**{row['Name']}**: {row['Comment']}")
