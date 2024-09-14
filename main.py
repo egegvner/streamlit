@@ -129,9 +129,9 @@ if canvas_result.image_data is not None:
             save_comment(name, comment)
             st.success('Comment submitted successfully!')
         elif name == "":
-            st.error('Don't you have a name?')
+            st.error("Don't you have a name?")
         elif comment == "":
-            st.error('Why would you post a empty comment?')
+            st.error("Why would you post a empty comment?")
 
     st.subheader('Existing Comments')
     comments = load_comments()
