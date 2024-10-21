@@ -27,11 +27,6 @@ data = {
     'Neurons': [128, 256, 256, 256, 10]
 }
 
-def stream_data(s):
-    for word in s.split(" "):
-        yield word + " "
-        time.sleep(0.2)
-
 def load_comments():
     try:
         return pd.read_csv('comments.csv')
@@ -45,9 +40,9 @@ def save_comment(name, comment):
     comments.to_csv('comments.csv', index=False)
 
 st.toast("Scroll for more!", icon="🔽")
-st.write("# MNIST Digit Recognition")
+st.write("# MNIST Digit Recognition Using a `Keras` Model")
 
-st.write('#### Draw a digit (0 - 9) below')
+st.write('#### Draw a digit `(0 - 9)` below')
 
 canvas_result = st_canvas(
     fill_color="rgba(255, 165, 0, 0.3)",
