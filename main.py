@@ -40,7 +40,7 @@ def save_comment(name, comment):
     comments.to_csv('comments.csv', index=False)
 
 st.toast("Scroll for more!", icon="🔽")
-st.write("# MNIST Digit Recognition Using a `Keras` Model")
+st.write("# MNIST it Recognition Using a `Keras` Model")
 
 st.write('#### Draw a digit `(0 - 9)` below')
 
