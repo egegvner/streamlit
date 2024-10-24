@@ -24,7 +24,7 @@ model = load_model()
 
 data = {
     'Layer': ['1', '2', '3', '4', '5'],
-    'Neurons': [128, 256, 256, 256, 10]
+    'Neurons': [256, 512, 512, 256, 10]
 }
 
 def load_comments():
