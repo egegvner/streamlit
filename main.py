@@ -79,7 +79,7 @@ if canvas_result.image_data is not None:
     st.write(f'# Prediction: \v`{str(output)}`')
 
     st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
-    st.write("###### Model `v2.0.8`, Parameter Count: `1,480,458`")
+    st.write("###### Model Version `V 3.2.6`\n Parameters `1,480,458`")
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
@@ -108,7 +108,7 @@ if canvas_result.image_data is not None:
     st.markdown("""
     <img src="https://www.cutercounter.com/hits.php?id=hxpcokn&nd=9&style=1" border="0" alt="website counter"></a>
     """, unsafe_allow_html=True)
-    st.write("###### Credits to `Ege Güvener` / `@egegvner` @2024")
+    st.write("###### Credits to / Model by `Ege Güvener` / `@egegvner` Sept, @2024")
 
     st.write("# Leave a Comment")
 
