@@ -78,8 +78,8 @@ if canvas_result.image_data is not None:
 
     st.write(f'# Prediction: \v`{str(output)}`')
 
-    st.write(f'##### Certainty: \v`{certainty * 100:.2f}%`')
-    st.write("###### Model Version `V 3.2.6`")
+    st.write(f'#### Certainty: \v`{certainty * 100:.2f}%`')
+    st.write("###### Model Version `3.2.6`")
     st.write("###### Parameters `1,480,458`")
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
