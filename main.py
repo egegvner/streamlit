@@ -7,7 +7,7 @@ import time
 import pandas as pd
 
 st.set_page_config(
-    page_title="Tensorflow Model",
+    page_title="Ege AI",
     page_icon="💎",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -39,8 +39,7 @@ def save_comment(name, comment):
     comments = pd.concat([comments, new_comment], ignore_index=True)
     comments.to_csv('comments.csv', index=False)
 
-st.toast("Scroll for more!", icon="🔽")
-st.write("# MNIST Digit Recognition Using a `Keras` Model by `Ege`")
+st.write("# MNIST Digit Recognition Using a Tensorflow `Keras` Model")
 
 st.write('#### Draw a digit `(0 - 9)` below')
 
