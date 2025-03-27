@@ -78,8 +78,8 @@ if canvas_result.image_data is not None:
     st.write(f'# Prediction: \v`{str(output)}`')
 
     st.write(f'#### Certainty: \v`{certainty * 100:.2f}%`')
-    st.write("###### Model Version `3.2.6`")
-    st.write("###### Parameters `1,480,458`")
+    st.write("###### Model Version `4.3.5`")
+    st.write("###### Parameters `1,880,458`")
     st.divider()
     st.write("### Image As a Grayscale `NumPy` Array")
     st.write(input_image_gs_np)
@@ -93,9 +93,9 @@ if canvas_result.image_data is not None:
     
     col1.metric(label="Epochs", value=10, delta=9, help="One epoch refers to one complete pass through the entire training dataset.")
 
-    col2.metric(label="Accuracy", value="97.06%", delta="0.52%", help="Total accuracy of the model which is calculated based on the test data.")
+    col2.metric(label="Accuracy", value="99.34%", delta="2.39%", help="Total accuracy of the model which is calculated based on the test data.")
 
-    col3.metric(label="Model Train Time", value="0.18h", delta="0.04h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
+    col3.metric(label="Model Train Time", value="0.33h", delta="0.12h", help="Time required to fully train the model with specified epoch value. (in hours)", delta_color="inverse")
 
     st.divider()
     st.write("# Number of Neurons")
