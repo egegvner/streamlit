@@ -91,7 +91,7 @@ if canvas_result.image_data is not None:
 
     col1, col2, col3 = st.columns(3)
     
-    col1.metric(label="Epochs", value=10, delta=9, help="One epoch refers to one complete pass through the entire training dataset.")
+    col1.metric(label="Epochs", value=50, delta=40, help="One epoch refers to one complete pass through the entire training dataset.")
 
     col2.metric(label="Accuracy", value="99.34%", delta="2.39%", help="Total accuracy of the model which is calculated based on the test data.")
 
